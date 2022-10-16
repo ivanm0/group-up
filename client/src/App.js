@@ -9,6 +9,7 @@ const clientId = '195055295608-gjvnf37g5n4jdero49bod908e6p40igs.apps.googleuserc
 
 function App() {
 	const [ test, setTest ] = useState('hi');
+	const [ teachers, setTeachers ] = useState('teach');
 
 	useEffect(() => {
 		const initClient = () => {
@@ -27,6 +28,13 @@ function App() {
 		}).then((res) => {
 			console.log(res);
 			setTest(res.data.msg);
+		});
+		axios({
+			method: 'GET',
+			url: '/teachers'
+		}).then((res) => {
+			console.log(res);
+			setTeachers(res.data.teachers);
 		});
 	});
 
@@ -51,6 +59,10 @@ function App() {
 
 	const logOut = () => {
 		setProfile(null);
+	};
+
+	const addTeacher = () => {
+		axios.post('/teachers/add', { first: 'crust', last: 'lump' });
 	};
 
 	return (
@@ -81,6 +93,8 @@ function App() {
 				)}
 			</div>
 			<p>{test}</p>
+			<p>{JSON.stringify(teachers)}</p>
+			<button onClick={addTeacher}>CLICK ME</button>
 		</div>
 	);
 }
