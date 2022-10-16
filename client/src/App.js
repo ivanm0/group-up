@@ -1,100 +1,38 @@
-import logo from './logo.svg';
+import group from './group.png';
 import axios from 'axios';
 import './App.css';
 import { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
-
-const clientId = '195055295608-gjvnf37g5n4jdero49bod908e6p40igs.apps.googleusercontent.com';
+import Student from './components/studentHome';
+import Teacher from './components/teacherHome';
+import StudentAddCourse from './components/addCourseStudent';
+import TeacherAddCourse from './components/addCourseTeacher';
+import {
+	ChakraProvider,
+	Center,
+	Button,
+	HStack,
+  } from '@chakra-ui/react'
+  import theme from './theme';
+import {Routes, Route, useNavigate } from "react-router-dom";
+import Main from './Main';
 
 function App() {
-	const [ test, setTest ] = useState('hi');
-	const [ teachers, setTeachers ] = useState('teach');
-
-	useEffect(() => {
-		const initClient = () => {
-			gapi.client.init({
-				clientId: clientId,
-				scope: ''
-			});
-		};
-		gapi.load('client:auth2', initClient);
-	});
-
-	useEffect(() => {
-		axios({
-			method: 'GET',
-			url: '/test'
-		}).then((res) => {
-			setTest(res.data.msg);
-		});
-		axios({
-			method: 'GET',
-			url: '/teachers'
-		}).then((res) => {
-			setTeachers(res.data.teachers);
-		});
-	});
-
-	const [ profile, setProfile ] = useState([]);
-	useEffect(() => {
-		const initClient = () => {
-			gapi.client.init({
-				clientId: clientId,
-				scope: ''
-			});
-		};
-		gapi.load('client:auth2', initClient);
-	});
-
-	const onSuccess = (res) => {
-		console.log(res.googleId);
-		setProfile(res.profileObj);
-	};
-
-	const onFailure = (err) => {
-		console.log('failed', err);
-	};
-
-	const logOut = () => {
-		setProfile(null);
-	};
-
-	const addTeacher = () => {
-		axios.post('/teachers', { id: '116156181927733462690', first: 'crust', last: 'lump' });
-	};
-
 	return (
+		<ChakraProvider theme={theme}>
 		<div className="App">
-			<div>
-				<h2>React Google Login</h2>
-				<br />
-				<br />
-				{profile ? (
-					<div>
-						<img src={profile.imageUrl} alt="user image" />
-						<h3>User Logged in</h3>
-						<p>Name: {profile.name}</p>
-						<p>Email Address: {profile.email}</p>
-						<br />
-						<br />
-						<GoogleLogout clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut} />
-					</div>
-				) : (
-					<GoogleLogin
-						clientId={clientId}
-						buttonText="Sign in with Google"
-						onSuccess={onSuccess}
-						onFailure={onFailure}
-						cookiePolicy={'single_host_origin'}
-						isSignedIn={true}
-					/>
-				)}
-			</div>
-			<p>{test}</p>
-			<p>{JSON.stringify(teachers)}</p>
-			<button onClick={addTeacher}>CLICK ME</button>
+      		<img className="logo" src={group}/>
+			  	
+				<Routes>
+					<Route path="/" element={<Main />}/>
+          			<Route path="/studentHome" element={<Student />} />
+					<Route path="/studentAddCourse" element={<StudentAddCourse />} />
+          			<Route path="/teacherHome" element={<Teacher />} />
+					<Route path="/teacherAddCourse" element={<TeacherAddCourse />} />
+        		</Routes>
 		</div>
+		</ChakraProvider>
 	);
 }
 
