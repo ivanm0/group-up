@@ -70,7 +70,7 @@ function App() {
 				{profile ? (
 					<div>
 						{/* Todo: Should only ask who are you? for first sign in */}
-						<Center marginTop={'175px'} marginBottom={'25px'} style={{fontSize: '50px'}}>
+						<Center paddingTop={'175px'} marginBottom={'25px'} style={{fontSize: '50px'}}>
 							Who are you?
 						</Center>
 						<Center>
