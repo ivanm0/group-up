@@ -62,7 +62,7 @@ function App() {
 	};
 
 	const addTeacher = () => {
-		axios.post('/teachers/add', { first: 'crust', last: 'lump' });
+		axios.post('/teachers', { first: 'crust', last: 'lump' });
 	};
 
 	return (
