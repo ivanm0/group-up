@@ -18,10 +18,7 @@ import {
 import {Routes, Route, useNavigate } from "react-router-dom";
 import Main from './Main';
 
-
-
 function App() {
-	
 	return (
 		<ChakraProvider theme={theme}>
 		<div className="App">
@@ -34,7 +31,6 @@ function App() {
           			<Route path="/teacherHome" element={<Teacher />} />
 					<Route path="/teacherAddCourse" element={<TeacherAddCourse />} />
         		</Routes>
-				
 		</div>
 		</ChakraProvider>
 	);
