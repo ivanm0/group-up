@@ -35,8 +35,8 @@ class Project(Base):
     id = Column(UUID, primary_key=True)
     course_id = Column(UUID)
     projectname = Column(String)
-    min = Column(INT)
-    max = Column(INT)
+    min_size = Column(INT)
+    max_size = Column(INT)
 
 class Group(Base):
     __tablename__ = 'groups'
@@ -51,3 +51,7 @@ class Request(Base):
     group_id = Column(UUID)
     req_student_id = Column(String)
     status = Column(INT)
+
+    
+
+
