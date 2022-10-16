@@ -10,6 +10,11 @@ engine = create_engine(conn_string, convert_unicode=True)
 snmaker = sessionmaker(bind=engine)
 
 import teacher_routes
+import courses_routes
+import group_routes
+import project_routes
+import request_routes
+import student_routes
 
 @app.route("/test")
 def hello_world():

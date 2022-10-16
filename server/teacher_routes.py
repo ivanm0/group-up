@@ -18,6 +18,7 @@ def teachers():
             lastname=data['last'],
          )
          session.add(teacher)
+         return {"res": True}
    
    else:
       def callback(session):

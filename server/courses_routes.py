@@ -16,6 +16,7 @@ def make_course():
             teacher_id = data['teacher_id']
         )
         session.add(course)
+        return {"result": True}
     return run_transaction(snmaker, callback)
 
 @app.route("/course/enroll")
@@ -46,7 +47,7 @@ def display_courses_teacher(teacher_id):
 
 
 @app.route("/student/<student_id>/courses", methods = ["GET"])
-def display_courses_teacher(student_id):
+def display_courses_student(student_id):
     def callback(session):
         courses = session.query(Enrollment).join(Course, Course.id==Enrollment.course_id).filter(Enrollment.student_id==student_id)
         result = list(map(lambda course: {'id': course.id,
@@ -56,7 +57,7 @@ def display_courses_teacher(student_id):
         return {"courses": result}
     return run_transaction(snmaker, callback)
 
-@app.route("<course_id>/projects", methods = ["GET"])
+@app.route("/<course_id>/projects", methods = ["GET"])
 def display_projects(course_id):
     def callback(session):
         projects = session.query(Project).filter(Project.course_id==course_id)
