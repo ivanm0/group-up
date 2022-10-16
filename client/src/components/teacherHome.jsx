@@ -8,22 +8,27 @@ import axios from 'axios';
 
 const forLoopComponent = (courses) => {
 	for (let i = 0; i < courses.length; i++) {
-		subComponent(courses[i]);
+		Course(courses[i]);
 	}
 };
 
-const subComponent = (course) => {
+const Course = (props) => {
 	return (
 		<div>
 			<div className="course-row">
 				<HStack>
-					<Button className="course" colorScheme="teal" variant="outline">
-						{course.coursename}
+					<Button
+						className="course"
+						colorScheme="teal"
+						variant="outline"
+						onClick={() => props.navigateCourse(props.course)}
+					>
+						{props.course.coursename}
 					</Button>
 					<img
 						className="copy-button"
 						onClick={() => {
-							navigator.clipboard.writeText(course.id);
+							navigator.clipboard.writeText(props.course.id);
 						}}
 						src={copy}
 					/>
@@ -45,6 +50,10 @@ const TeacherHome = (props) => {
 	});
 	const navigate = useNavigate();
 
+	const navigateCourse = (course) => {
+		navigate(`/teacherCourse/${course.id}`, { state: course });
+	};
+
 	return (
 		<ChakraProvider theme={theme}>
 			<div className="right-corner-button">
@@ -62,7 +71,7 @@ const TeacherHome = (props) => {
 				</h1>
 			</div>
 
-			<div className="group-courses">{courses.map((course) => subComponent(course))}</div>
+			<div className="group-courses">{courses.map((course) => Course({ course, navigateCourse }))}</div>
 		</ChakraProvider>
 	);
 };

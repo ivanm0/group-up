@@ -8,34 +8,31 @@ import Student from './components/studentHome';
 import Teacher from './components/teacherHome';
 import StudentAddCourse from './components/addCourseStudent';
 import TeacherAddCourse from './components/addCourseTeacher';
-import {
-	ChakraProvider,
-	Center,
-	Button,
-	HStack,
-  } from '@chakra-ui/react'
-  import theme from './theme';
-import {Routes, Route, useNavigate } from "react-router-dom";
+import { ChakraProvider, Center, Button, HStack } from '@chakra-ui/react';
+import theme from './theme';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Main from './Main';
 import TeacherCourses from './components/teacherCourse';
 import StudentCourses from './components/studentCourse';
+import AddProject from './components/addProject';
 
 function App() {
 	return (
 		<ChakraProvider theme={theme}>
-		<div className="App">
-      		<img className="logo" src={group}/>
-			  	
+			<div className="App">
+				<img className="logo" src={group} />
+
 				<Routes>
-					<Route path="/" element={<Main />}/>
-          			<Route path="/studentHome" element={<Student />} />
+					<Route path="/" element={<Main />} />
+					<Route path="/studentHome" element={<Student />} />
 					<Route path="/studentAddCourse" element={<StudentAddCourse />} />
-          			<Route path="/teacherHome" element={<Teacher />} />
+					<Route path="/teacherHome" element={<Teacher />} />
 					<Route path="/teacherAddCourse" element={<TeacherAddCourse />} />
-					<Route path="/teacherCourses" element={<TeacherCourses />} />
-					<Route path="/studentCourses" element={<StudentCourses />} />
-        		</Routes>
-		</div>
+					<Route path="/teacherAddProject" element={<AddProject />} />
+					<Route path="/teacherCourse/:courseId" element={<TeacherCourses />} />
+					<Route path="/studentCourse/:courseId" element={<StudentCourses />} />
+				</Routes>
+			</div>
 		</ChakraProvider>
 	);
 }

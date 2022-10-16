@@ -1,48 +1,30 @@
-
-import React from "react";
-import {
-	ChakraProvider,
-	Center,
-	Button,
-	VStack,
-    HStack,
-    Text,
-    Input
-  } from '@chakra-ui/react'
-  import theme from '../theme';
-import {Routes, Route, useNavigate } from "react-router-dom";
+import React from 'react';
+import { ChakraProvider, Center, Button, VStack, HStack, Text, Input } from '@chakra-ui/react';
+import theme from '../theme';
+import { Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
 import '../styles.css';
-import copy from '../copy.png'
+import copy from '../copy.png';
 
-  
 const TeacherCourses = () => {
-    const navigate = useNavigate();
-  return (
-    <ChakraProvider theme={theme}>
-      <div>
-        <div className="right-corner-button">
-            <Button colorScheme='teal' width='125px'>Team</Button> 
-            <Button colorScheme='teal' width='125px'>Resources</Button> 
-            {/* onClick={() => navigate("/studentAddCourse")} */}
-        </div>
-        <Center paddingTop={'175px'} marginBottom={'25px'} style={{fontSize: '30px'}}>
-            <VStack spacing={8}>
-                <Text>Add Course</Text>
-                <div>
-                    <Input className="add-course" colorScheme='teal' variant='outline' placeholder='Course Name' style={{width: '400px'}}/> 
-                </div>
-                <div>
-                    <HStack spacing={8}>
-                        <Button colorScheme='teal' variant='outline'>Submit</Button>
-                        <Button colorScheme='teal' variant='outline' onClick={() => navigate("/studentHome")}>Cancel</Button>
-                    </HStack>
-                </div>
-            </VStack>
-        </Center>
-    </div>
+	const navigate = useNavigate();
+	const { courseId } = useParams();
+	const { state } = useLocation();
+	return (
+		<ChakraProvider theme={theme}>
+			<div className="right-corner-button">
+				<Button onClick={() => navigate('/teacherAddProject', { state })} colorScheme="teal" width="125px">
+					Add Project
+				</Button>
+			</div>
+			<div className="left-header">
+				<h1>
+					<b>{state.coursename} Projects</b>
+				</h1>
+			</div>
 
-    </ChakraProvider>
-  );
+			{/* <div className="group-courses">{courses.map((course) => Course({ course, navigateCourse }))}</div> */}
+		</ChakraProvider>
+	);
 };
-  
+
 export default TeacherCourses;
