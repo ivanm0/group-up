@@ -19,42 +19,36 @@ CREATE TABLE students (
     email STRING
 );
 
-CREATE TABLE courses {
+CREATE TABLE courses (
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
     coursename STRING,
     teacher_id STRING
-};
+);
 
-CREATE TABLE enrollments {
+CREATE TABLE enrollments (
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
     student_id STRING,
     course_id uuid
-};
+);
 
-CREATE TABLE projects {
+CREATE TABLE projects (
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
     course_id uuid,
     projectname STRING,
     min_size INT,
     max_size INT
-};
+);
 
-CREATE TABLE groups {
+CREATE TABLE groups (
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
     project_id uuid,
     student_ids STRING,
     lock BOOLEAN 
-};
+);
 
-CREATE TABLE requests {
+CREATE TABLE requests (
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
     group_id uuid,
     req_student_id STRING,
     status INT
-};
-
-INSERT INTO teachers (firstname, lastname)
-    VALUES ('Paul', 'Ahn');
-
--- INSERT INTO scores (avatar, playername, points)
---   VALUES (3, 'James O. Ewing', 721);
+);

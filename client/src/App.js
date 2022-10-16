@@ -26,14 +26,12 @@ function App() {
 			method: 'GET',
 			url: '/test'
 		}).then((res) => {
-			console.log(res);
 			setTest(res.data.msg);
 		});
 		axios({
 			method: 'GET',
-			url: '/teachers'
+			url: '/teacher'
 		}).then((res) => {
-			console.log(res);
 			setTeachers(res.data.teachers);
 		});
 	});
@@ -50,6 +48,7 @@ function App() {
 	});
 
 	const onSuccess = (res) => {
+		console.log(res.googleId);
 		setProfile(res.profileObj);
 	};
 
@@ -62,7 +61,7 @@ function App() {
 	};
 
 	const addTeacher = () => {
-		axios.post('/teachers/add', { first: 'crust', last: 'lump' });
+		axios.post('/teacher', { id: '116156181927733462690', first: 'crust', last: 'lump' });
 	};
 
 	return (
