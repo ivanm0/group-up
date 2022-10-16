@@ -33,3 +33,17 @@ def students():
    
    return run_transaction(snmaker, callback)
       
+@app.route("/students/<student_id>/<project_id>/requests", methods=['GET'])
+def view_requests(student_id, project_id):
+    def callback(session):
+        requests = session.query(Request).join(Group, Group.id == Request.group_id).filter(Group.project_id == project_id and Request.req_student_id == student_id)
+        result = list(map(lambda request: {'id':request.id,
+                                          'group_id': request.group_id,
+                                          'req_student_id': request.req_student_id,
+                                          'status': request.status
+                                          },
+                           requests))
+        return {"requests": result}
+
+    return run_transaction(snmaker, callback)
+      
