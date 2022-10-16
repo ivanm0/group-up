@@ -6,22 +6,26 @@ import '../styles.css';
 import copy from '../copy.png';
 import axios from 'axios';
 
-const forLoopComponent = (courses) => {
-	for (let i = 0; i < courses.length; i++) {
-		subComponent(courses[i]);
-	}
-};
-
-const subComponent = (course) => {
+const Course = (props) => {
 	return (
 		<div>
 			<div className="course-row">
 				<HStack>
-					<Button className="course" colorScheme="teal" variant="outline">
-						{course.coursename}
+					<Button
+						className="course"
+						colorScheme="teal"
+						variant="outline"
+						onClick={() => props.navigateCourse(props.course)}
+					>
+						{props.course.coursename}
 					</Button>
-					{/* Todo: Add onclick for pressing course button and copy link */}
-					<img className="copy-button" src={copy} />
+					<img
+						className="copy-button"
+						onClick={() => {
+							navigator.clipboard.writeText(props.course.id);
+						}}
+						src={copy}
+					/>
 				</HStack>
 			</div>
 			<br />
@@ -40,6 +44,10 @@ const StudentHome = () => {
 		});
 	});
 
+	const navigateCourse = (course) => {
+		navigate(`/studentCourse/${course.id}`, { state: course });
+	};
+
 	return (
 		<ChakraProvider theme={theme}>
 			<div className="right-corner-button">
@@ -53,7 +61,7 @@ const StudentHome = () => {
 				</h1>
 			</div>
 
-			<div className="group-courses">{courses.map((course) => subComponent(course))}</div>
+			<div className="group-courses">{courses.map((course) => Course({ course, navigateCourse }))}</div>
 		</ChakraProvider>
 	);
 };

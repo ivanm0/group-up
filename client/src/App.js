@@ -15,6 +15,8 @@ import Main from './Main';
 import TeacherCourses from './components/teacherCourse';
 import StudentCourses from './components/studentCourse';
 import AddProject from './components/addProject';
+import StudentProject from './components/studentProject';
+import CreateGroup from './components/createGroup';
 
 function App() {
 	return (
@@ -31,6 +33,8 @@ function App() {
 					<Route path="/teacherAddProject" element={<AddProject />} />
 					<Route path="/teacherCourse/:courseId" element={<TeacherCourses />} />
 					<Route path="/studentCourse/:courseId" element={<StudentCourses />} />
+					<Route path="/studentProject/:projectId" element={<StudentProject />} />
+					<Route path="/createGroup" element={<CreateGroup />} />
 				</Routes>
 			</div>
 		</ChakraProvider>

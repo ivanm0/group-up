@@ -42,6 +42,7 @@ class Project(Base):
 class Group(Base):
     __tablename__ = 'groups'
     id = Column(UUID, primary_key=True) 
+    groupname = Column(String)
     project_id = Column(UUID)
     student_ids = Column(String)
     lock = Column(BOOLEAN)

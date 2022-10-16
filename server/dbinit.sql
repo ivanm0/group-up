@@ -42,6 +42,7 @@ CREATE TABLE projects (
 
 CREATE TABLE groups (
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
+    groupname STRING,
     project_id uuid,
     student_ids STRING,
     lock BOOLEAN 

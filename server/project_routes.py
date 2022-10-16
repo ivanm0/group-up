@@ -25,6 +25,6 @@ def create_project():
 def get_all_project_groups(project_id):
     def callback(session):
         groups = session.query(Group).filter(Group.project_id==project_id).all()
-        return {"groups": list(map(lambda group: {"id": group.id, "project_id": group.project_id, "student_ids": group.student_ids.split("|")}, groups))}
+        return {"groups": list(map(lambda group: {"id": group.id, "groupname": group.groupname, "project_id": group.project_id, "student_ids": group.student_ids.split("|")}, groups))}
     return run_transaction(snmaker, callback)
     

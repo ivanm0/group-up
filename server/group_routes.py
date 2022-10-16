@@ -11,6 +11,7 @@ def create_group():
     def callback(session):
         group = Group(
             id=str(uuid.uuid4()),
+            groupname=data['groupname'],
             project_id=data['project_id'],
             student_ids="|".join(data['student_ids']),
             lock=False
