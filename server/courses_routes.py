@@ -58,6 +58,18 @@ def display_courses_teacher(student_id):
         return {"courses": result}
     return run_transaction(snmaker, callback)
 
-
+@app.route("<course_id>/projects", methods = ["GET"])
+def display_projects(course_id):
+    def callback(session):
+        projects = session.query(Project).filter(Project.course_id==course_id)
+        result = list(map(lambda project: {'id': project.id,
+                                        'projectname': project.projectname,
+                                        'min_size': project.min_size,
+                                        'max_size': project.max_size
+                                        },
+                        projects))
+        return {"projects": result}
+    return run_transaction(snmaker, callback)
+   
    
       
