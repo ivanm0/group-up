@@ -20,10 +20,16 @@ const clientId = '195055295608-gjvnf37g5n4jdero49bod908e6p40igs.apps.googleuserc
 
 function Main() {
 	const [ test, setTest ] = useState('hi');
+	const [ profile, setProfile ] = useState([]);
+    const [ googleId, setGoogleId   ] = useState('');
 
 	const navigate = useNavigate();
 
 	const navigateTeacher = () => {
+        console.log(profile);
+        axios.post("/teachers", {id: googleId, firstname: profile.givenName, lastname: profile.familyName}).then((response) => {
+            const res = response.data;
+        })
         navigate('/teacherHome')
 	}
 
@@ -51,7 +57,6 @@ function Main() {
 		});
 	});
 
-	const [ profile, setProfile ] = useState([]);
 	useEffect(() => {
 		const initClient = () => {
 			gapi.client.init({
@@ -64,6 +69,7 @@ function Main() {
 
 	const onSuccess = (res) => {
 		setProfile(res.profileObj);
+        setGoogleId(res.googleId);
 	};
 
 	const onFailure = (err) => {

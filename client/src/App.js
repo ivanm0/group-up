@@ -17,6 +17,8 @@ import {
   import theme from './theme';
 import {Routes, Route, useNavigate } from "react-router-dom";
 import Main from './Main';
+import TeacherCourses from './components/teacherCourse';
+import StudentCourses from './components/studentCourse';
 
 function App() {
 	return (
@@ -30,6 +32,8 @@ function App() {
 					<Route path="/studentAddCourse" element={<StudentAddCourse />} />
           			<Route path="/teacherHome" element={<Teacher />} />
 					<Route path="/teacherAddCourse" element={<TeacherAddCourse />} />
+					<Route path="/teacherCourses" element={<TeacherCourses />} />
+					<Route path="/studentCourses" element={<StudentCourses />} />
         		</Routes>
 		</div>
 		</ChakraProvider>
