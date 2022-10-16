@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import group from './group.png';
 import axios from 'axios';
 import './App.css';
 import { useState, useEffect } from 'react';
@@ -55,19 +56,20 @@ function App() {
 
 	return (
 		<div className="App">
-      		<img src="client/public/group.png"/>
+      		<img className="logo" src={group}/>
 			<div>
-				<h2>React Google Login</h2>
+				{/* <img className="logo-home" src={group}/> */}
+				<h2 style={{fontSize: '40px', top: '200px'}}>groUP</h2>
 				<br />
 				<br />
 				{profile ? (
 					<div>
-						<h3>User Logged in</h3>
+						{/* <h3>User Logged in</h3>
 						<p>Name: {profile.name}</p>
 						<p>Email Address: {profile.email}</p>
 						<br />
 						<br />
-						<GoogleLogout clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut} />
+						<GoogleLogout clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut} /> */}
 					</div>
 				) : (
 					<GoogleLogin
@@ -80,7 +82,6 @@ function App() {
 					/>
 				)}
 			</div>
-			<p>{test}</p>
 		</div>
 	);
 }
