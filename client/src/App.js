@@ -30,7 +30,7 @@ function App() {
 		});
 		axios({
 			method: 'GET',
-			url: '/teacher'
+			url: '/teachers'
 		}).then((res) => {
 			setTeachers(res.data.teachers);
 		});
@@ -61,7 +61,7 @@ function App() {
 	};
 
 	const addTeacher = () => {
-		axios.post('/teacher', { id: '116156181927733462690', first: 'crust', last: 'lump' });
+		axios.post('/teachers', { id: '116156181927733462690', first: 'crust', last: 'lump' });
 	};
 
 	return (
