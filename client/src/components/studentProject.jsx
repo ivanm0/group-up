@@ -51,7 +51,7 @@ const StudentProject = () => {
 			</div>
 			<div className="left-header">
 				<h1>
-					<b>{state.projectname} Groups</b>
+					<b>{state.project.projectname} Groups</b>
 				</h1>
 			</div>
 

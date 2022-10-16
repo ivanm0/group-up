@@ -12,9 +12,9 @@ const CreateGroup = (props) => {
 	const [ name, setName ] = useState('');
 	const createCourse = () => {
 		axios
-			.post('/group', { project_id: state.id, groupname: name, student_ids: [ '0924HF2NWWOIFHWOW' ] })
+			.post('/group', { project_id: state.project.id, groupname: name, student_ids: [ state.studentId ] })
 			.then(() => {
-				navigate(`/project/${state.id}`, { state });
+				navigate(`/project/${state.project.id}`, { state });
 			});
 	};
 	return (

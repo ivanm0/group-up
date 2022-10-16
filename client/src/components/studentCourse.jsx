@@ -47,14 +47,14 @@ const StudentCourses = () => {
 	});
 
 	const navigateProject = (project) => {
-		navigate(`/studentProject/${project.id}`, { state: project });
+		navigate(`/studentProject/${project.id}`, { state: { project, studentId: state.studentId } });
 	};
 
 	return (
 		<ChakraProvider theme={theme}>
 			<div className="left-header">
 				<h1>
-					<b>{state.coursename} Projects</b>
+					<b>{state.course.coursename} Projects</b>
 				</h1>
 			</div>
 

@@ -45,7 +45,7 @@ const StudentHome = () => {
 	});
 
 	const navigateCourse = (course) => {
-		navigate(`/studentCourse/${course.id}`, { state: course });
+		navigate(`/studentCourse/${course.id}`, { state: { course, studentId: state.studentId } });
 	};
 
 	return (
