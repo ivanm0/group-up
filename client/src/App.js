@@ -55,13 +55,13 @@ function App() {
 
 	return (
 		<div className="App">
+      		<img src="client/public/group.png"/>
 			<div>
 				<h2>React Google Login</h2>
 				<br />
 				<br />
 				{profile ? (
 					<div>
-						<img src={profile.imageUrl} alt="user image" />
 						<h3>User Logged in</h3>
 						<p>Name: {profile.name}</p>
 						<p>Email Address: {profile.email}</p>
