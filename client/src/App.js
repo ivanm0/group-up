@@ -4,7 +4,8 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
-
+import Student from './components/studentHome';
+import Teacher from './components/teacherHome';
 import {
 	ChakraProvider,
 	Center,
@@ -12,12 +13,24 @@ import {
 	HStack,
   } from '@chakra-ui/react'
   import theme from './theme';
+import {Routes, Route, useNavigate } from "react-router-dom";
+
 
 const clientId = '195055295608-gjvnf37g5n4jdero49bod908e6p40igs.apps.googleusercontent.com';
 
 function App() {
 	const [ test, setTest ] = useState('hi');
 
+	const navigate = useNavigate();
+
+	const navigateTeacher = () => {
+		navigate('/teacherHome')
+	}
+
+	const navigateStudent = () => {
+		navigate('/studentHome')
+	}
+	
 	useEffect(() => {
 		const initClient = () => {
 			gapi.client.init({
@@ -75,9 +88,9 @@ function App() {
 						</Center>
 						<Center>
 						<HStack spacing={8}>
-							<Button colorScheme='teal' width='300px'>Teacher</Button>
+							<Button onClick={navigateTeacher} colorScheme='teal' width='300px'>Teacher</Button>
 							{/* Todo: Add teacher or student to the cockroachDB */}
-							<Button colorScheme='teal' width='300px'>Student</Button>
+							<Button onClick={navigateStudent} colorScheme='teal' width='300px'>Student</Button>
 						</HStack>
 						</Center>
 						<GoogleLogout 
@@ -91,7 +104,7 @@ function App() {
 
 				) : (
 					<div>
-						<Center marginTop={'175px'} marginBottom={'25px'}>
+						<Center paddingTop={'175px'} marginBottom={'25px'}>
 						<b style={{fontSize: '50px'}}>groUP</b> 
 						</Center>
 						<Center h='0px'>
@@ -110,6 +123,10 @@ function App() {
 					</div>
 					
 				)}
+				<Routes>
+          			<Route path="/studentHome" element={<Student />} />
+          			<Route path="/teacherHome" element={<Teacher />} />
+        		</Routes>
 			</div>
 		</div>
 		</ChakraProvider>
