@@ -14,7 +14,7 @@ class Teacher(Base):
 class Course(Base):
     __tablename__ = 'courses'
     id = Column(UUID, primary_key=True)
-    name = Column(String)
+    coursename = Column(String)
     teacher_id = Column(String)
 
 class Student(Base):
@@ -34,7 +34,7 @@ class Project(Base):
     __tablename__ = 'projects'
     id = Column(UUID, primary_key=True)
     course_id = Column(UUID)
-    name = Column(String)
+    projectname = Column(String)
     min = Column(INT)
     max = Column(INT)
 
