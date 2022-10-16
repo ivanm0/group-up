@@ -31,11 +31,13 @@ const subComponent = () => {
   ;
 };
   
-const teacherHome = () => {
+const TeacherHome = () => {
+  const navigate = useNavigate();
+
   return (
     <ChakraProvider theme={theme}>
       <div className="right-corner-button">
-        <Button colorScheme='teal' width='125px'>Add Course</Button>
+        <Button onClick={() => navigate("/teacherAddCourse")} colorScheme='teal' width='125px'>Add Course</Button>
       </div>
       <div className="left-header">
         <h1><b>Courses</b></h1>
@@ -50,4 +52,4 @@ const teacherHome = () => {
   );
 };
   
-export default teacherHome;
+export default TeacherHome;

@@ -6,6 +6,8 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import Student from './components/studentHome';
 import Teacher from './components/teacherHome';
+import StudentAddCourse from './components/addCourseStudent';
+import TeacherAddCourse from './components/addCourseTeacher';
 import {
 	ChakraProvider,
 	Center,
@@ -28,7 +30,9 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Main />}/>
           			<Route path="/studentHome" element={<Student />} />
+					<Route path="/studentAddCourse" element={<StudentAddCourse />} />
           			<Route path="/teacherHome" element={<Teacher />} />
+					<Route path="/teacherAddCourse" element={<TeacherAddCourse />} />
         		</Routes>
 				
 		</div>

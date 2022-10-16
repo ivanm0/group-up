@@ -22,6 +22,7 @@ const subComponent = () => {
     <div className="course-row">
     <HStack>
       <Button className="course" colorScheme='teal' variant='outline'>Course Name</Button>
+      {/* Todo: Add onclick for pressing course button and copy link */}
       <img className="copy-button" src={copy}/>    
     </HStack>
     </div> 
@@ -31,11 +32,13 @@ const subComponent = () => {
   ;
 };
   
-const studentHome = () => {
+const StudentHome = () => {
+  const navigate = useNavigate();
+
   return (
     <ChakraProvider theme={theme}>
       <div className="right-corner-button">
-        <Button colorScheme='teal' width='125px'>Add Course</Button>
+        <Button onClick={() => navigate("/studentAddCourse")} colorScheme='teal' width='125px'>Add Course</Button>
       </div>
       <div className="left-header">
         <h1><b>Courses</b></h1>
@@ -50,4 +53,4 @@ const studentHome = () => {
   );
 };
   
-export default studentHome;
+export default StudentHome;

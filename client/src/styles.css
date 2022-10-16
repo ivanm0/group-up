@@ -33,3 +33,8 @@
 .copy-button {
     width: 25px;
 }
+
+.add-course {
+    position: fixed;
+    width: 70%;
+}
