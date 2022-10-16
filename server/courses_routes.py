@@ -3,7 +3,7 @@ import uuid
 from flask import url_for, request
 from cockroachdb.sqlalchemy import run_transaction
 from werkzeug.utils import redirect
-from models import Course, Enrollment
+from models import Course, Enrollment, Project
 
 
 @app.route("/course", methods = ["POST"])
@@ -38,7 +38,6 @@ def display_courses_teacher(teacher_id):
     def callback(session):
         courses = session.query(Course).filter(Course.teacher_id==teacher_id)
         result = list(map(lambda course: {'id': course.id,
-                                        'code': course.code,
                                         'coursename': course.coursename,
                                         },
                         courses))
@@ -51,13 +50,23 @@ def display_courses_teacher(student_id):
     def callback(session):
         courses = session.query(Enrollment).join(Course, Course.id==Enrollment.course_id).filter(Enrollment.student_id==student_id)
         result = list(map(lambda course: {'id': course.id,
-                                        'code': course.code,
                                         'coursename': course.coursename,
                                         },
                         courses))
         return {"courses": result}
     return run_transaction(snmaker, callback)
 
-
+@app.route("/teacher/<course_id>/projects", methods = ["GET"])
+def display_projects(course_id):
+    def callback(session):
+        projects = session.query(Project).filter(Project.course_id==course_id)
+        result = list(map(lambda project: {'id': project.id,
+                                        'projectname': project.projectname,
+                                        'min_size': project.min_size,
+                                        'max_size': project.max_size
+                                        },
+                        projects))
+        return {"projects": result}
+    return run_transaction(snmaker, callback)
    
       
