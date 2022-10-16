@@ -16,9 +16,10 @@ def students():
             id=data['id'],
             firstname=data['first'],
             lastname=data['last'],
-            email=data['email']
+            # email=data['email']
          )
          session.add(student)
+         return {"result": True}
    
    else:
       def callback(session):

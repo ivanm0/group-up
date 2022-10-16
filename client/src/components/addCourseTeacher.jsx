@@ -12,7 +12,7 @@ const AddCourseTeacher = (props) => {
 	const [ name, setName ] = useState('');
 	const createCourse = () => {
 		axios.post('/course', { teacher_id: state.teacherId, coursename: name }).then(() => {
-			navigate('/teacherHome');
+			navigate('/teacherHome', { state });
 		});
 	};
 	return (

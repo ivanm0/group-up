@@ -19,7 +19,7 @@ def make_course():
         return {"result": True}
     return run_transaction(snmaker, callback)
 
-@app.route("/course/enroll")
+@app.route("/course/enroll", methods=["POST"])
 def enroll_course():
     data = request.json
     def callback(session):
@@ -29,9 +29,11 @@ def enroll_course():
         enrollment = Enrollment(
             id = str(uuid.uuid4()),
             student_id = data['student_id'],
-            course_id = course.id
+            course_id = course.id,
+            bio = data['bio']
         )
         session.add(enrollment)
+        return {"result": True}
     return run_transaction(snmaker, callback)
 
 @app.route("/teacher/<teacher_id>/courses", methods = ["GET"])
@@ -49,7 +51,7 @@ def display_courses_teacher(teacher_id):
 @app.route("/student/<student_id>/courses", methods = ["GET"])
 def display_courses_student(student_id):
     def callback(session):
-        courses = session.query(Enrollment).join(Course, Course.id==Enrollment.course_id).filter(Enrollment.student_id==student_id)
+        courses = session.query(Course).join(Enrollment, Course.id==Enrollment.course_id).filter(Enrollment.student_id==student_id)
         result = list(map(lambda course: {'id': course.id,
                                         'coursename': course.coursename,
                                         },

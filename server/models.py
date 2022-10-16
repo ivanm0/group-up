@@ -29,6 +29,7 @@ class Enrollment(Base):
     id = Column(UUID, primary_key=True)
     student_id = Column(String)
     course_id = Column(UUID)
+    bio = Column(String)
 
 class Project(Base):
     __tablename__ = 'projects'

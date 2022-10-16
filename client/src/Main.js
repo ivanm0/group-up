@@ -30,7 +30,12 @@ function Main() {
 	};
 
 	const navigateStudent = () => {
-		navigate('/studentHome');
+		axios
+			.post('/students', { id: googleId, first: profile.givenName, last: profile.familyName })
+			.then((response) => {
+				const res = response.data;
+			});
+		navigate('/studentHome', { state: { studentId: googleId } });
 	};
 
 	useEffect(() => {

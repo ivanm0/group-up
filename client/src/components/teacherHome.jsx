@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChakraProvider, Center, Button, HStack } from '@chakra-ui/react';
 import theme from '../theme';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import '../styles.css';
 import copy from '../copy.png';
+import axios from 'axios';
 
 const forLoopComponent = (courses) => {
 	for (let i = 0; i < courses.length; i++) {
@@ -11,15 +12,21 @@ const forLoopComponent = (courses) => {
 	}
 };
 
-const subComponent = () => {
+const subComponent = (course) => {
 	return (
 		<div>
 			<div className="course-row">
 				<HStack>
 					<Button className="course" colorScheme="teal" variant="outline">
-						Course Name
+						{course.coursename}
 					</Button>
-					<img className="copy-button" src={copy} />
+					<img
+						className="copy-button"
+						onClick={() => {
+							navigator.clipboard.writeText(course.id);
+						}}
+						src={copy}
+					/>
 				</HStack>
 			</div>
 			<br />
@@ -30,8 +37,11 @@ const subComponent = () => {
 
 const TeacherHome = (props) => {
 	const { state } = useLocation();
+	const [ courses, setCourses ] = useState([]);
 	useEffect(() => {
-		console.log({ state });
+		axios.get(`/teacher/${state.teacherId}/courses`).then((res) => {
+			setCourses(res.data.courses);
+		});
 	});
 	const navigate = useNavigate();
 
@@ -52,10 +62,7 @@ const TeacherHome = (props) => {
 				</h1>
 			</div>
 
-			<div className="group-courses">
-				{subComponent()}
-				{subComponent()}
-			</div>
+			<div className="group-courses">{courses.map((course) => subComponent(course))}</div>
 		</ChakraProvider>
 	);
 };

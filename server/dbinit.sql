@@ -28,7 +28,8 @@ CREATE TABLE courses (
 CREATE TABLE enrollments (
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
     student_id STRING,
-    course_id uuid
+    course_id uuid,
+    bio STRING
 );
 
 CREATE TABLE projects (
