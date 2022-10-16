@@ -77,7 +77,6 @@ function Main() {
 	return (
 		<ChakraProvider theme={theme}>
 		<div className="Main">
-      		<img className="logo" src={group}/>
 
 			<div>
 				{profile ? (
@@ -92,6 +91,7 @@ function Main() {
 							{/* Todo: Add teacher or student to the cockroachDB */}
 							<Button onClick={navigateStudent} colorScheme='teal' width='300px'>Student</Button>
 						</HStack>
+                        {/* Todo: Add college dropdown */}
 						</Center>
 						<GoogleLogout 
 							clientId={clientId} 

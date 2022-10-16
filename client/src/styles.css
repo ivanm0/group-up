@@ -1,0 +1,35 @@
+.right-corner-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.left-header {
+    position: fixed;
+    top: 100px;
+    left: 300px;
+}
+
+.group-courses {
+    position: fixed;
+    top: 150px;
+    left: 350px;
+}
+
+.course-row {
+    position: fixed;
+    width: 70%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 10%;
+}
+
+.course {
+    position: fixed;
+    width: 70%;
+    height: 10%;
+}
+
+.copy-button {
+    width: 25px;
+}
